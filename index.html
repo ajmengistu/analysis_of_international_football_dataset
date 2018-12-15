@@ -11809,7 +11809,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this project, the entire data science pipline: data curation, exploratory data analysis, hypothisis testing, and machine learning methods will be applied to the international football match results and Gross Domestic Product (GDP) per capita dataset. Specifically, we will attempt to understand how a country's (top 40 ranked men's national teams in 2018) GDP per capita has historically influenced its national football team's ability to win international matches. This will be achieved by uncovering a possible relationship between GDP per capita and a team's performance.
+<p>In this project, the entire data science pipline: data curation, exploratory data analysis, hypothesis testing, and machine learning methods will be applied to the international football match results and Gross Domestic Product (GDP) per capita dataset. Specifically, we will attempt to understand how a country's (top 40 ranked men's national teams in 2018) GDP per capita has historically influenced its national football team's ability to win international matches. This will be achieved by uncovering a possible relationship between the national GDP per capita and the team's match performance.
 <br>
 <br>
 <em>Note: Although football is commonly known as soccer in the United States, we will be referring to the sport as football for the rest of this project</em>  :)</p>
@@ -11842,10 +11842,10 @@ div#notebook {
 <p>This <a href="https://www.kaggle.com/martj42/international-football-results-from-1872-to-2017/home">dataset</a> contains over 39,000 mens's international football match results from 1872 to 2018. Many of the matches were organized by <a href="https://en.wikipedia.org/wiki/FIFA">FIFA</a>, the international organization responsible for organizing football's major international tournaments. However, the dataset does not include match results from Olympics Games and U-23 or leagues.
 <br>
 <br>
-Furthermore, this <a href="https://www.kaggle.com/jain6968/data-of-gdp-for-all-countries">data</a> be will used to obtain the <a href="https://en.wikipedia.org/wiki/Gross_domestic_product">Gross Domestic Product(GDP)</a> for each country in the world from 2000 to 2015. This <a href="https://www.fifa.com/fifa-world-ranking/ranking-table/men/">data</a> contains the current top 40 ranked teams. We will track the performance of the teams in this ladder dataset from 2000 to 2015 and along with their respective nation's GDP per capita will be used for analysis.
+Furthermore, this <a href="https://www.kaggle.com/jain6968/data-of-gdp-for-all-countries">data</a> will be used to obtain the <a href="https://en.wikipedia.org/wiki/Gross_domestic_product">Gross Domestic Product(GDP)</a> per capita for each country in the <a href="https://www.fifa.com/fifa-world-ranking/ranking-table/men/">FIFA top 40 rankings</a> from 2000 to 2015. This <a href="https://www.fifa.com/fifa-world-ranking/ranking-table/men/">data</a> contains the current top 40 ranked teams. We will track the performance of the teams in this ladder dataset from 2000 to 2015 and along with their respective nation's GDP per capita will be used for analysis.
 <br>
 <br>
-The project objective is to answer several questions pertaining to the dataset and to understand how a countries GDP per capita might influence a match win. For example, which teams have historically won the most games? Is there a relationship between a country's GDP per capita and the number of match wins for given year? Can we predict the probability a team will win a match based on their nation's GDP per capita?
+The project objective is to answer several questions pertaining to the dataset and to understand how a countries GDP per capita might influence a match win. For example, which teams have historically won the most games? Is there a relationship between a country's GDP per capita and the number of match wins for given year? Can we predict head to head matchups based on a nation's GDP per capita?
 <br>
 <br>
 You can get more information about the dataset and international football from the following links:
@@ -11858,7 +11858,7 @@ Datasets used:
 <p><a href="https://www.fifa.com/fifa-world-ranking/ranking-table/men/">FIFA Top 40 Teams</a>
 <br><br>
 More Info: <br>
-<a href="https://kaggle.com">kaggle.com</a></p>
+<a href="https://kaggle.com/datasets">Kaggle Datasets</a></p>
 <p><a href="https://en.wikipedia.org/wiki/FIFA">Wikipedia: FIFA</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Gross_domestic_product">Wikipedia: GDP</a></p>
 <p><a href="https://fifa.com">fifa.com</a></p>
@@ -11894,27 +11894,31 @@ More Info: <br>
 </ul>
 </blockquote>
 </li>
-<li>Wrangling<blockquote><ul>
+<li><p>Wrangling</p>
+<blockquote><ul>
 <li>a. Data cleaning</li>
 <li>b. Filter the international fooball match results dataset</li>
+<li>c. Filter only the top 40 ranked teams from the international football match dataset</li>
 </ul>
 </blockquote>
 </li>
-<li>Exloratory Data Analysis<blockquote><ul>
+<li><p>Exloratory Data Analysis</p>
+<blockquote><ul>
 <li>a. GDP distributions</li>
 <li>b. Correlations between GDP and winning percentage</li>
 <li>c. Graph winning percentage of top teams from FIFA top 40</li>
+<li>d. Filter the GDP dataset to only include GDP from 2000 to 2015</li>
 </ul>
 </blockquote>
 </li>
 <li>Conclusion<blockquote><ul>
-<li>Findings</li>
-<li>Predictions</li>
+<li>a. Findings</li>
+<li>b. Predictions</li>
 </ul>
 </blockquote>
 </li>
 <li>Further Resources<blockquote><ul>
-<li>More information on football </li>
+<li>a. More information on football </li>
 </ul>
 </blockquote>
 </li>
@@ -11985,7 +11989,7 @@ More Info: <br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[248]:</div>
+<div class="prompt input_prompt">In&nbsp;[333]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -12013,7 +12017,7 @@ More Info: <br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[249]:</div>
+<div class="prompt input_prompt">In&nbsp;[334]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -12029,7 +12033,7 @@ More Info: <br>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[249]:</div>
+<div class="prompt output_prompt">Out[334]:</div>
 
 
 
@@ -12137,7 +12141,7 @@ More Info: <br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[250]:</div>
+<div class="prompt input_prompt">In&nbsp;[335]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
@@ -12153,7 +12157,7 @@ More Info: <br>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[250]:</div>
+<div class="prompt output_prompt">Out[335]:</div>
 
 
 
@@ -12270,7 +12274,7 @@ More Info: <br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[251]:</div>
+<div class="prompt input_prompt">In&nbsp;[336]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
@@ -12286,7 +12290,7 @@ More Info: <br>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[251]:</div>
+<div class="prompt output_prompt">Out[336]:</div>
 
 
 
@@ -12312,7 +12316,7 @@ More Info: <br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[252]:</div>
+<div class="prompt input_prompt">In&nbsp;[337]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;tournament&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -12328,7 +12332,7 @@ More Info: <br>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[252]:</div>
+<div class="prompt output_prompt">Out[337]:</div>
 
 
 
@@ -12384,14 +12388,14 @@ More Info: <br>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next lets take a look at world Gross Domestic Product (GDP) dataset</p>
+<p>Next, lets take a look at world Gross Domestic Product (GDP) per capita dataset</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[253]:</div>
+<div class="prompt input_prompt">In&nbsp;[338]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show data dimensions</span>
@@ -12421,7 +12425,7 @@ More Info: <br>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[253]:</div>
+<div class="prompt output_prompt">Out[338]:</div>
 
 
 
@@ -12497,12 +12501,21 @@ More Info: <br>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, lets take a look at FIFA's top 40 ranked men's national teams</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[254]:</div>
+<div class="prompt input_prompt">In&nbsp;[339]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show the current top 5 teams from the 40 men&#39;s national teams in the dataset</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show the current top 10 teams from the top 40 ranked men&#39;s national teams in the dataset</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fifa</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">fifa</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
@@ -12528,7 +12541,7 @@ More Info: <br>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[254]:</div>
+<div class="prompt output_prompt">Out[339]:</div>
 
 
 
@@ -12619,10 +12632,10 @@ More Info: <br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[255]:</div>
+<div class="prompt input_prompt">In&nbsp;[340]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Diplay image of the top 10 ranked teams</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Diplay image of the top 10 ranked teams from fifa.com</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
 <span class="n">Image</span><span class="p">(</span><span class="s2">&quot;fifa_top_10.png&quot;</span><span class="p">)</span>
 </pre></div>
@@ -12637,7 +12650,7 @@ More Info: <br>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[255]:</div>
+<div class="prompt output_prompt">Out[340]:</div>
 
 
 
@@ -12690,10 +12703,10 @@ More Info: <br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[256]:</div>
+<div class="prompt input_prompt">In&nbsp;[341]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Searh for missing data points from international football match results dataset and GDP dataset</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Searh for missing data points from international football match results, fifa top 40 and GDP datasets</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(),</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(),</span> <span class="n">gdp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fifa</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(),</span> <span class="n">gdp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -12726,7 +12739,7 @@ False (9234, 4)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[257]:</div>
+<div class="prompt input_prompt">In&nbsp;[342]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check if any columns from data and gdp dataset have any missing data points.</span>
@@ -12787,19 +12800,21 @@ dtype: int64
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Take a sample of the dataset (data points from 1970 to 2015) that includes only teams ranked in the top 40 from the international football match results dataset. This will help us analyse the GDP data points with that of the match results for each country (top 40 ranked teams) by year.</p>
+<p>Take a sample of the dataset (data points from 2000 to 2015) that includes only teams ranked in the top 40 from the international football match results dataset. This will help us analyse the GDP per capita data points with that of the match results for each country (top 40 ranked teams) by year.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[258]:</div>
+<div class="prompt input_prompt">In&nbsp;[343]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a list to add all the years from the football dataset.</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a list to add a new column that corresponds to the year a match was played. </span>
 <span class="n">year</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Iterate over each row and convert the date into a int</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="c1"># Grab the year and store it in year list.</span>
     <span class="n">year</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][:</span><span class="mi">4</span><span class="p">]))</span>
 </pre></div>
 
@@ -12810,7 +12825,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[259]:</div>
+<div class="prompt input_prompt">In&nbsp;[344]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Add a new column to the football dataset containing the year a match took place.</span>
@@ -12826,10 +12841,10 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[260]:</div>
+<div class="prompt input_prompt">In&nbsp;[345]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Filter the fooball dataset to include only data points from 1970 to 2015 in order to match </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Filter the fooball dataset to include only data points from 2000 to 2015 in order to match </span>
 <span class="c1"># the years of the GDP dataset.</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2000</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">2015</span><span class="p">]</span>
@@ -12844,10 +12859,11 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[261]:</div>
+<div class="prompt input_prompt">In&nbsp;[346]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show the filtered data with a new &#39;year&#39; column and old &#39;date&#39; column deleted</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12860,7 +12876,7 @@ dtype: int64
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[261]:</div>
+<div class="prompt output_prompt">Out[346]:</div>
 
 
 
@@ -12966,14 +12982,27 @@ dtype: int64
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="c.-Filter-only-the-top-40-ranked-teams-from-the-international-football-match-dataset">c. Filter only the top 40 ranked teams from the international football match dataset<a class="anchor-link" href="#c.-Filter-only-the-top-40-ranked-teams-from-the-international-football-match-dataset">&#182;</a></h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[262]:</div>
+<div class="prompt input_prompt">In&nbsp;[347]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a boolean list to store wheather a team in the top 40 ranked teams particpated in a match</span>
+<span class="c1"># between the years 2000 and 2015</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span> 
+<span class="c1"># Create a list of the top 40 ranked teams</span>
 <span class="n">top_40_teams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fifa</span><span class="p">[</span><span class="s1">&#39;Team&#39;</span><span class="p">])</span>
+<span class="c1"># Iterate over each row</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="c1"># Determine if a team exists in a row</span>
     <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;home_team&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="n">top_40_teams</span><span class="p">)</span> <span class="ow">or</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;away_team&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="n">top_40_teams</span><span class="p">)))</span>
 </pre></div>
 
@@ -12984,11 +13013,14 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[263]:</div>
+<div class="prompt input_prompt">In&nbsp;[348]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;top_40&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create and add a new column to &#39;data&#39;</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;top_40&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+<span class="c1"># Filter the top 40 ranked teams</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;top_40&#39;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">]</span>
+<span class="c1"># Show the new &#39;data&#39; DataFrame</span>
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -13002,7 +13034,7 @@ dtype: int64
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[263]:</div>
+<div class="prompt output_prompt">Out[348]:</div>
 
 
 
@@ -13116,10 +13148,12 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[264]:</div>
+<div class="prompt input_prompt">In&nbsp;[349]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;top_40&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Delete the top_40 column, it is no longer needed for further analysis</span>
+<span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;top_40&#39;</span><span class="p">]</span>
+<span class="c1"># Re-index the new DataFrame</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
@@ -13130,10 +13164,11 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[265]:</div>
+<div class="prompt input_prompt">In&nbsp;[351]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show the new filtered dataset</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -13146,7 +13181,7 @@ dtype: int64
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[265]:</div>
+<div class="prompt output_prompt">Out[351]:</div>
 
 
 
@@ -13254,7 +13289,7 @@ dtype: int64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[266]:</div>
+<div class="prompt input_prompt">In&nbsp;[352]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
@@ -13270,7 +13305,7 @@ dtype: int64
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[266]:</div>
+<div class="prompt output_prompt">Out[352]:</div>
 
 
 
@@ -13380,17 +13415,17 @@ dtype: int64
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Filter the GDP dataset to only include GDP from 2000 to 2015</p>
-
+<h3 id="d.-Filter-the-GDP-per-capita-dataset-to-only-include-GDP-per-capita-from-2000-to-2015">d. Filter the GDP per capita dataset to only include GDP per capita from 2000 to 2015<a class="anchor-link" href="#d.-Filter-the-GDP-per-capita-dataset-to-only-include-GDP-per-capita-from-2000-to-2015">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[267]:</div>
+<div class="prompt input_prompt">In&nbsp;[353]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gdp</span> <span class="o">=</span> <span class="n">gdp</span><span class="p">[</span><span class="n">gdp</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2000</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Filter the DataFrame to only include data after 2000</span>
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">gdp</span><span class="p">[</span><span class="n">gdp</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2000</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -13413,6 +13448,7 @@ dtype: int64
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Create a list to store top 40 FIFA ranked teams</span>
 <span class="n">top_40_teams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fifa</span><span class="p">[</span><span class="s1">&#39;Team&#39;</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">gdp</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gdp</span><span class="p">[</span><span class="s1">&#39;Country or Area&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="n">top_40_teams</span><span class="p">))</span>
